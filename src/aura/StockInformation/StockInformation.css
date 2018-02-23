@@ -1,0 +1,53 @@
+.THIS {
+}
+
+.THIS .increase {
+    background-color:rgb(75, 202, 129);
+    color: white;
+}
+
+.THIS .decrease {
+    background-color:rgb(212, 80, 76);
+    color: white;
+}
+
+.THIS .axis path,
+.THIS .axis line {
+  fill: none;
+  stroke: #16325c;
+  shape-rendering: crispEdges;
+}
+.THIS text {
+  fill : #16325c;
+  stroke: none;
+}
+.THIS .line {
+  fill: none;
+  stroke: #0070d2;
+  stroke-width: 1.5px;
+}
+
+.THIS .dot {
+  fill: none;
+  stroke: #0070d2;
+  stroke-width: 1.5px;
+}
+
+.THIS div.tooltip {   
+  position: absolute; 
+  width: 100px;                  
+  height: 50px;                 
+  padding: 5px;             
+  color: #16325c;    
+  font-size: 14px;    
+  background: lightsteelblue;   
+  border: 0px;      
+  border-radius: 8px;        
+}
+
+.THIS .invisible {
+    display: none;
+}
+.THIS .visible {
+    display: block;
+}

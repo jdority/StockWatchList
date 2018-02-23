@@ -1,0 +1,5 @@
+<design:component label="Stock Watch List">
+    <design:attribute name="firstSymbol" label="1st Stock Symbol" description="The stock symbol that you wish to disply info for" />
+    <design:attribute name="secondSymbol" label="2nd Stock Symbol" description="The stock symbol that you wish to disply info for" />
+    <design:attribute name="thirdSymbol" label="3rd Stock Symbol" description="The stock symbol that you wish to disply info for" />
+</design:component>

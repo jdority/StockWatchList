@@ -1,0 +1,67 @@
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" controller="StockInfoCall"  >
+    
+    <ltng:require styles="/resource/SLDS090/assets/styles/salesforce-lightning-design-system-vf.css" />
+    <ltng:require scripts="/resource/d3js"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <aura:attribute name="firstSymbol" type="string"/>
+    <aura:attribute name="secondSymbol" type="string"/>
+    <aura:attribute name="thirdSymbol" type="string"/>
+    <aura:attribute name="symbolSet" type="string"/>    
+    <aura:attribute name="todaysDate" type="string"/>
+    <aura:attribute name="yesterdaysDate" type="string"/>    
+    <aura:attribute name="newsUrl" type="string" default="https://finance.yahoo.com/quote/"/>    
+    <aura:attribute name="stockList" type="List"/>
+    <aura:attribute name="stale" type="string"/>
+    
+    <div class="slds">
+        <div class="slds-card">
+            <div class="slds-card__header slds-grid">
+                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                    <div class="slds-media__body">
+                        <h2 class="slds-text-heading--small slds-truncate">Watch List</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-card__body">
+                <table class="slds-table slds-table--bordered slds-max-medium-table--stacked-horizontal slds-no-row-hover">
+                    <thead>
+                        <tr>
+                            <th class="slds-text-heading--label slds-size--1-of-4" scope="col">Symbol</th>
+                            <th class="slds-text-heading--label slds-size--1-of-4" scope="col">Price</th>
+                            <th class="slds-text-heading--label slds-size--1-of-4" scope="col">Change</th>
+                            <th class="slds-text-heading--label slds-size--1-of-4" scope="col">52wk High</th>
+                            <!-- <th class="slds-text-heading- -label slds-size- -1-of-4" scope="col">52wk Low</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items='{!v.stockList}' var='stock'>
+                            <tr class="slds-hint-parent">
+                                <td class="slds-size--1-of-4" data-label="Name"><a href="{!v.newsUrl + stock.symbol}" target="_blank">{!stock.symbol}</a></td>
+                                <td class="slds-size--1-of-4" data-label="Price">{!stock.price}</td>
+                                <aura:if isTrue="{!stock.increase}">
+                                    <td class="slds-size--1-of-4" data-label="Change"><span class="slds-badge increase">{!stock.change}</span></td>
+                                    <aura:set attribute="else">
+                                        <td class="slds-size--1-of-4" data-label="Change"><span class="slds-badge decrease">{!stock.change}</span></td>
+                                    </aura:set>
+                                </aura:if> 
+                                <td class="slds-size--1-of-4" data-label="High">{!stock.high}</td>
+                                <!-- <td class="slds-size- -1-of-4" data-label="Low">{!stock.low}</td> -->
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+                <div id="demo">
+                </div>
+            </div>
+            <div class="slds-card__footer">
+                <aura:if isTrue="{!v.stale == ''}">
+                    <br/>
+                    <aura:set attribute="else">
+                        {!v.stale}
+                    </aura:set>
+                </aura:if>
+            </div>
+        </div>
+    </div>
+</aura:component>
